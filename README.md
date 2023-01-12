@@ -43,7 +43,7 @@
 The application layout is available in Figma:
 
 <p align="center">
-	<a href="https://www.figma.com/file/lKNiWA8DsIpbYZqkdhzo1m/mm-money-app?node-id=0%3A1](https://www.figma.com/file/nTBcE8ug85ExJ49GI27Lxi/homi?t=dJ3CuwPV1g0ffBYy-6">
+	<a href="https://www.figma.com/file/nTBcE8ug85ExJ49GI27Lxi/homi?t=Mcv1eAjWgSTsE18m-1">
   	<img alt="Made by amandalobo" src="https://img.shields.io/badge/Acessar%20Layout%20-Figma-%2304D361">
 	</a>
 </p>
