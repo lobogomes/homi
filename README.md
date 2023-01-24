@@ -34,7 +34,6 @@
 
   - [x] check the temperature and luminosity of room's house with sensors
   - [x] control the home appliances
-  - [x] play morse code with lamps
 
 ---
 
@@ -50,9 +49,17 @@ The application layout is available in Figma:
 
 
 <p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
-  <img alt="homi" title="homi" src="assets/frames/login.svg" height="400px">
+  <img alt="homi" title="homi" src="assets/printscreen/login.png" height="400px">
+  <img alt="homi" title="homi" src="assets/printscreen/register.png" height="400px">
+  <img alt="homi" title="homi" src="assets/printscreen/home.png" height="400px">
+
 </p>
 
+<p align="center" style="display: flex; align-items: flex-start; justify-content: center;">
+    <img alt="homi" title="homi" src="assets/printscreen/temp.png" height="400px">
+  <img alt="homi" title="homi" src="assets/printscreen/lights.png" height="400px">
+  <img alt="homi" title="homi" src="assets/printscreen/profile.png" height="400px">
+</p>
 ---
 
 ## 🚀 Execute
