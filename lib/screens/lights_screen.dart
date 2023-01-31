@@ -4,9 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_switch/flutter_switch.dart';
 import 'package:get/get.dart';
 import 'package:homi/controllers/lights_screen_controller.dart';
+import 'package:homi/routes/navigator.dart';
 import 'package:homi/utils/assets_util.dart';
 import 'package:homi/utils/spaces_util.dart';
 import 'package:homi/widgets/buttons.dart';
+import 'package:homi/widgets/devices_data.dart';
+import 'package:iconsax/iconsax.dart';
 
 class LightsScreen extends StatelessWidget {
   const LightsScreen({Key? key}) : super(key: key);
@@ -21,39 +24,7 @@ class LightsScreen extends StatelessWidget {
           child: Column(children: [
             TopSelectButton(),
             AppSpaces.vertical10,
-            Container(
-              height: (Get.width - 60) / 3,
-              child: Obx(
-                () => Row(children: [
-                  HomeButton(
-                    image: AppAssets.light,
-                    isSelected: controller.index.value == 0,
-                    text: 'Lights',
-                    unSelectedImageColor: Colors.black,
-                    onTap: () => controller.index.value = 0,
-                    fontSize: 16,
-                  ),
-                  AppSpaces.horizontal10,
-                  HomeButton(
-                    image: AppAssets.temperature,
-                    isSelected: controller.index.value == 1,
-                    text: 'Tempature',
-                    onTap: () => controller.index.value = 1,
-                    unSelectedImageColor: Colors.black,
-                    fontSize: 16,
-                  ),
-                  AppSpaces.horizontal10,
-                  HomeButton(
-                    image: AppAssets.humidity,
-                    isSelected: controller.index.value == 2,
-                    text: 'Humidity',
-                    unSelectedImageColor: Colors.black,
-                    onTap: () => controller.index.value = 2,
-                    fontSize: 16,
-                  ),
-                ]),
-              ),
-            ),
+            DevicesData(),
             AppSpaces.vertical20,
             Text(
               'Intensity',
@@ -105,7 +76,10 @@ class LightsScreen extends StatelessWidget {
             Obx(
               () => FlutterSwitch(
                 value: controller.switchData.value,
-                onToggle: (value) => controller.switchData.value = value,
+                onToggle: (value) => {
+                  controller.switchData.value = value,
+                  controller.changeSlider()
+                },
                 inactiveColor: Get.theme.disabledColor,
                 activeColor: Get.theme.disabledColor,
                 padding: 0.0,

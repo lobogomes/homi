@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homi/controllers/bottom_navigation_controller.dart';
 import 'package:homi/controllers/home_screen_controller.dart';
 import 'package:homi/routes/navigator.dart';
 import 'package:homi/utils/assets_util.dart';
@@ -13,6 +14,9 @@ class HomeScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    BottomNavigationController bottomNavigationController =
+        BottomNavigationController();
+
     return GetBuilder<HomeScreenController>(
       init: HomeScreenController(),
       builder: (controller) {
@@ -28,7 +32,7 @@ class HomeScreen extends StatelessWidget {
                     style: TextStyle(fontSize: 18),
                   )),
                   GestureDetector(
-                    onTap: () => AppNavigator.pushNamed(registerRoute),
+                    onTap: () => bottomNavigationController.setIndex(3),
                     child: CircleAvatar(
                       radius: 20,
                       backgroundImage: AssetImage(AppAssets.user),

@@ -103,14 +103,23 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    bool on = true;
     return InkWell(
-      onTap: () {},
+      onTap: () => {on = on == true ? false : true},
       borderRadius: BorderRadius.circular(20),
       child: Container(
         decoration: BoxDecoration(
-          shape: BoxShape.circle,
-          gradient: appGradient,
-        ),
+            shape: BoxShape.circle,
+            color: on == false ? Colors.grey : null,
+            gradient: on == true ? appGradient : null,
+            boxShadow: on == true
+                ? [
+                    BoxShadow(
+                        color: Colors.grey,
+                        blurRadius: 5.0,
+                        offset: Offset(0, 5))
+                  ]
+                : null),
         padding: EdgeInsets.all(9.0),
         child: Image.asset(
           AppAssets.onOff,

@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:homi/routes/navigator.dart';
+import 'package:homi/routes/route.dart';
+import 'package:homi/widgets/devices_data.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:homi/controllers/tempature_screen_controller.dart';
 import 'package:homi/utils/assets_util.dart';
@@ -19,39 +22,7 @@ class TempatureScreen extends StatelessWidget {
           child: Column(children: [
             TopSelectButton(),
             AppSpaces.vertical10,
-            Container(
-              height: (Get.width - 60) / 3,
-              child: Obx(
-                () => Row(children: [
-                  HomeButton(
-                    image: AppAssets.temperature,
-                    isSelected: controller.index.value == 0,
-                    text: 'Tempature',
-                    onTap: () => controller.index.value = 0,
-                    unSelectedImageColor: Colors.black,
-                    fontSize: 16,
-                  ),
-                  AppSpaces.horizontal10,
-                  HomeButton(
-                    image: AppAssets.light,
-                    isSelected: controller.index.value == 1,
-                    text: 'Lights',
-                    unSelectedImageColor: Colors.black,
-                    onTap: () => controller.index.value = 1,
-                    fontSize: 16,
-                  ),
-                  AppSpaces.horizontal10,
-                  HomeButton(
-                    image: AppAssets.humidity,
-                    isSelected: controller.index.value == 2,
-                    text: 'Humidity',
-                    unSelectedImageColor: Colors.black,
-                    onTap: () => controller.index.value = 2,
-                    fontSize: 16,
-                  ),
-                ]),
-              ),
-            ),
+            DevicesData(),
             AppSpaces.vertical20,
             Text(
               'Today',
@@ -78,8 +49,8 @@ class TempatureScreen extends StatelessWidget {
                     customWidths: CustomSliderWidths(
                         progressBarWidth: 5, handlerSize: 10),
                   ),
-                  min: 13,
-                  max: 25,
+                  min: 0,
+                  max: 40,
                   initialValue: controller.tempature.value,
                   onChangeEnd: (_value) => controller.tempature.value = _value,
                   innerWidget: (percentage) => Padding(
@@ -125,11 +96,10 @@ class TempatureScreen extends StatelessWidget {
             ),
             CircleButton(),
             AppSpaces.vertical10,
-            Text('Click to turn off'),
             AppSpaces.vertical10,
             AppButton(
               onPressed: () {},
-              text: 'Set Tempature',
+              text: 'Set air conditioner',
             ),
             AppSpaces.vertical30,
           ]),

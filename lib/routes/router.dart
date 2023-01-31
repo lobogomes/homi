@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:homi/screens/lights_screen.dart';
 import 'package:homi/screens/login_screen.dart';
+import 'package:homi/screens/profile_screen.dart';
 import 'package:homi/screens/register_screen.dart';
 import 'package:homi/screens/temperature_screen.dart';
 import '../screens/bottom_navigation_screen.dart';
@@ -40,6 +41,12 @@ abstract class AppRouter {
         return getPageRoute(
           settings: settings,
           view: const LightsScreen(),
+        );
+
+      case profileRoute:
+        return getPageRoute(
+          settings: settings,
+          view: const ProfileScreen(),
         );
 
       default:
