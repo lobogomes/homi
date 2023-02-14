@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:homi/utils/assets_util.dart';
 import 'package:homi/utils/spaces_util.dart';
 
@@ -10,6 +9,9 @@ class DevicesData extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final Size size = MediaQuery.of(context).size;
+    final ThemeData theme = Theme.of(context);
+
     return Container(
       height: 100,
       padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
@@ -26,11 +28,11 @@ class DevicesData extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: Get.width / 16,
-                    height: Get.height / 16,
+                    width: size.width / 16,
+                    height: size.height / 16,
                     child: Image.asset(
                       AppAssets.temperature,
-                      color: Get.theme.primaryColor,
+                      color: theme.primaryColor,
                     ),
                   ),
                   AppSpaces.horizontal10,
@@ -48,11 +50,11 @@ class DevicesData extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: Get.width / 10,
-                    height: Get.height / 10,
+                    width: size.width / 16,
+                    height: size.height / 16,
                     child: Image.asset(
                       AppAssets.light,
-                      color: Get.theme.primaryColor,
+                      color: theme.primaryColor,
                     ),
                   ),
                   AppSpaces.horizontal10,
@@ -70,11 +72,11 @@ class DevicesData extends StatelessWidget {
               Row(
                 children: [
                   Container(
-                    width: Get.width / 13,
-                    height: Get.height / 13,
+                    width: size.width / 13,
+                    height: size.height / 13,
                     child: Image.asset(
                       AppAssets.humidity,
-                      color: Get.theme.primaryColor,
+                      color: theme.primaryColor,
                     ),
                   ),
                   AppSpaces.horizontal10,

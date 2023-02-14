@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:iconsax/iconsax.dart';
 
 class SummaryHeader extends StatelessWidget {
@@ -9,6 +8,8 @@ class SummaryHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return GestureDetector(
       onTap: (() => {}),
       child: Container(
@@ -29,7 +30,7 @@ class SummaryHeader extends StatelessWidget {
                     Icon(
                       Icons.thermostat,
                       size: 20,
-                      color: Get.theme.primaryColor,
+                      color: theme.primaryColor,
                     ),
                     Text(
                       '25°C',
@@ -46,7 +47,7 @@ class SummaryHeader extends StatelessWidget {
                     Icon(
                       Icons.water_drop_outlined,
                       size: 20,
-                      color: Get.theme.primaryColor,
+                      color: theme.primaryColor,
                     ),
                     Text(
                       '80%',
@@ -63,7 +64,7 @@ class SummaryHeader extends StatelessWidget {
                     Icon(
                       Iconsax.sun_1,
                       size: 20,
-                      color: Get.theme.primaryColor,
+                      color: theme.primaryColor,
                     ),
                     Text(
                       'Day',

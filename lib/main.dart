@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homi/routes/navigator.dart';
-import 'package:homi/screens/login_screen.dart';
+import 'package:homi/features/home/pages/home_page.dart';
+import 'package:homi/features/home_functions/pages/home_functions.dart';
+import 'package:homi/features/login/pages/login_page.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GetMaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'HR Controller',
       theme: ThemeData(
@@ -31,9 +31,13 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.openSansTextTheme(),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const LoginScreen(),
-      onGenerateRoute: AppRouter.generateRoutes,
-      navigatorKey: AppNavigator.key,
+      initialRoute: '/login',
+      routes: {
+        // '/': (context) => const SplashPage(),
+        '/login': (context) => const LoginPage(),
+        '/home': (context) => HomePage(),
+        '/home/functions': (context) => const HomeFunctionsPage(),
+      },
     );
   }
 }

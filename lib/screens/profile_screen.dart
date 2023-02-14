@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:homi/routes/navigator.dart';
 import 'package:homi/utils/assets_util.dart';
 import 'package:homi/utils/spaces_util.dart';
 import 'package:iconsax/iconsax.dart';
@@ -116,7 +115,8 @@ class ProfileScreen extends StatelessWidget {
                     color: Colors.black,
                   ),
                   TextButton(
-                    onPressed: () => AppNavigator.pushNamedAndClear(loginRoute),
+                    onPressed:
+                        () {}, // => AppNavigator.pushNamedAndClear(loginRoute),
                     child: Text('log out',
                         style: TextStyle(color: Colors.black, fontSize: 16)),
                   ),

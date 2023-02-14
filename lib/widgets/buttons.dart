@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:homi/utils/assets_util.dart';
 import 'package:homi/utils/spaces_util.dart';
 import 'package:homi/utils/utils.dart';
@@ -57,27 +56,30 @@ class HomeButton extends StatelessWidget {
   final double fontSize;
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+    final Size size = MediaQuery.of(context).size;
+
     return Expanded(
       child: GestureDetector(
         onTap: onTap,
         child: Container(
           decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(15),
-            gradient: isSelected ? appGradient : null,
-            color: !isSelected ? Get.theme.backgroundColor : null,
+            gradient: isSelected ? appGradient(theme) : null,
+            color: !isSelected ? theme.backgroundColor : null,
           ),
           child: Column(children: [
             AppSpaces.vertical15,
             Expanded(
               child: Center(
                 child: Container(
-                  width: Get.width / 5,
-                  height: Get.height / 10,
+                  width: size.width / 5,
+                  height: size.height / 10,
                   child: Image.asset(
                     image,
                     color: isSelected
                         ? Colors.white
-                        : (unSelectedImageColor ?? Get.theme.primaryColor),
+                        : (unSelectedImageColor ?? theme.primaryColor),
                   ),
                 ),
               ),
@@ -103,7 +105,9 @@ class CircleButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
     bool on = true;
+
     return InkWell(
       onTap: () => {on = on == true ? false : true},
       borderRadius: BorderRadius.circular(20),
@@ -111,7 +115,7 @@ class CircleButton extends StatelessWidget {
         decoration: BoxDecoration(
             shape: BoxShape.circle,
             color: on == false ? Colors.grey : null,
-            gradient: on == true ? appGradient : null,
+            gradient: on == true ? appGradient(theme) : null,
             boxShadow: on == true
                 ? [
                     BoxShadow(
@@ -142,10 +146,12 @@ class AppButton extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
+    final ThemeData theme = Theme.of(context);
+
     return Container(
       decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(10),
-          gradient: appGradient,
+          gradient: appGradient(theme),
           boxShadow: [
             BoxShadow(color: Colors.grey, blurRadius: 5.0, offset: Offset(0, 5))
           ]),

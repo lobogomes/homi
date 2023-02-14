@@ -2,30 +2,81 @@ import 'package:flutter/material.dart';
 import 'package:homi/utils/animation/FadeAnimation.dart';
 import 'package:homi/widgets/buttons.dart';
 
-class RegisterScreen extends StatelessWidget {
-  const RegisterScreen({Key? key}) : super(key: key);
+class LoginPage extends StatelessWidget {
+  const LoginPage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     final ThemeData theme = Theme.of(context);
+
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
           child: Column(
         children: <Widget>[
-          FadeAnimation(
-              1,
-              Container(
-                margin: const EdgeInsets.only(top: 150, bottom: 40),
-                height: 70,
-                decoration: const BoxDecoration(
-                    image: DecorationImage(
-                        image: AssetImage('assets/images/logo-2.png'),
-                        scale: 0.5,
-                        fit: BoxFit.fitHeight)),
-              )),
+          Container(
+            height: 400,
+            decoration: const BoxDecoration(
+                image: DecorationImage(
+                    image: AssetImage('assets/images/background.png'),
+                    fit: BoxFit.fill)),
+            child: Stack(
+              children: <Widget>[
+                Positioned(
+                    left: 30,
+                    width: 80,
+                    height: 200,
+                    child: FadeAnimation(
+                        1,
+                        Container(
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image:
+                                      AssetImage('assets/images/light-1.png'))),
+                        ))),
+                Positioned(
+                  left: 140,
+                  width: 80,
+                  height: 150,
+                  child: FadeAnimation(
+                      1.3,
+                      Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/light-2.png'))),
+                      )),
+                ),
+                Positioned(
+                  right: 40,
+                  top: 40,
+                  width: 80,
+                  height: 150,
+                  child: FadeAnimation(
+                      1.5,
+                      Container(
+                        decoration: const BoxDecoration(
+                            image: DecorationImage(
+                                image: AssetImage('assets/images/clock.png'))),
+                      )),
+                ),
+                Positioned(
+                    child: FadeAnimation(
+                        1.6,
+                        Container(
+                          margin: const EdgeInsets.only(top: 220),
+                          height: 70,
+                          decoration: const BoxDecoration(
+                              image: DecorationImage(
+                                  image: AssetImage('assets/images/logo.png'),
+                                  scale: 0.5,
+                                  fit: BoxFit.fitHeight)),
+                        )))
+              ],
+            ),
+          ),
           Padding(
-            padding: const EdgeInsets.fromLTRB(30.0, 0, 30, 0),
+            padding: const EdgeInsets.all(30.0),
             child: Column(children: <Widget>[
               FadeAnimation(
                 1.8,
@@ -49,43 +100,19 @@ class RegisterScreen extends StatelessWidget {
                       child: const TextField(
                         decoration: InputDecoration(
                             border: InputBorder.none,
-                            hintText: "name",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          border:
-                              Border(bottom: BorderSide(color: Colors.grey))),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
                             hintText: "e-mail",
                             hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          border:
-                              Border(bottom: BorderSide(color: Colors.grey))),
                       child: const TextField(
                         decoration: InputDecoration(
                             border: InputBorder.none,
                             hintText: "password",
                             hintStyle: TextStyle(color: Colors.grey)),
                       ),
-                    ),
-                    Container(
-                      padding: const EdgeInsets.all(8.0),
-                      child: const TextField(
-                        decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "confirm password",
-                            hintStyle: TextStyle(color: Colors.grey)),
-                      ),
-                    ),
+                    )
                   ]),
                 ),
               ),
@@ -101,17 +128,17 @@ class RegisterScreen extends StatelessWidget {
                             Color.fromRGBO(143, 148, 251, .6)
                           ])),
                       child: AppButton(
-                        text: 'Register',
-                        onPressed: () {}, //=>
-                        //AppNavigator.pushNamedAndClear(dashboardRoute),
+                        text: 'Login',
+                        onPressed: () =>
+                            Navigator.of(context).pushReplacementNamed('/home'),
                       ))),
               const SizedBox(height: 70),
               FadeAnimation(
                   1.5,
                   GestureDetector(
-                    onTap: () {}, // => AppNavigator.pushNamed(loginRoute),
+                    onTap: () => Navigator.of(context).pushNamed(''),
                     child: Text(
-                      'Have an account? Login now.',
+                      'Don\'t have an account? Register.',
                       style: TextStyle(color: theme.primaryColor),
                     ),
                   ))
