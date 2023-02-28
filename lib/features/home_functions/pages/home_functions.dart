@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:homi/features/home_functions/lights/pages/lights_page.dart';
+import 'package:homi/features/home_functions/led/pages/led_page.dart';
 import 'package:homi/features/home_functions/temperature/pages/temperature_page.dart';
 import 'package:homi/widgets/buttons.dart';
 import 'package:homi/widgets/devices_data.dart';
@@ -40,14 +40,12 @@ class _HomeFunctionsPageState extends State<HomeFunctionsPage> {
           physics: const NeverScrollableScrollPhysics(),
           children: [
             TemperaturePage(),
-            LightsPage(),
+            LedPage(),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageController.positions.isNotEmpty
-            ? _pageController.page?.toInt() ?? 0
-            : 0,
+        currentIndex: _pageController.positions.isNotEmpty ? _pageController.page?.toInt() ?? 0 : 0,
         onTap: (index) => _pageController.animateToPage(
           index,
           duration: const Duration(milliseconds: 300),

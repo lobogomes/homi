@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'package:homi/features/home/pages/home_page.dart';
-import 'package:homi/features/home_functions/pages/home_functions.dart';
-import 'package:homi/features/login/pages/login_page.dart';
+import 'package:homi/core/route/router.dart';
+import 'package:homi/features/repository_registry.dart';
 
 void main() {
   WidgetsFlutterBinding.ensureInitialized();
@@ -11,6 +10,9 @@ void main() {
     statusBarColor: Colors.white,
     statusBarIconBrightness: Brightness.dark,
   ));
+
+  initRegister();
+
   runApp(const MyApp());
 }
 
@@ -31,13 +33,8 @@ class MyApp extends StatelessWidget {
         textTheme: GoogleFonts.openSansTextTheme(),
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      initialRoute: '/login',
-      routes: {
-        // '/': (context) => const SplashPage(),
-        '/login': (context) => const LoginPage(),
-        '/home': (context) => HomePage(),
-        '/home/functions': (context) => const HomeFunctionsPage(),
-      },
+      initialRoute: '/splash',
+      onGenerateRoute: CustomRouter.onGenerateRoute,
     );
   }
 }

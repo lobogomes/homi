@@ -1,5 +1,4 @@
-import 'package:flutter/material.dart'
-    show Alignment, LinearGradient, ThemeData;
+import 'package:flutter/material.dart' show Alignment, LinearGradient, ThemeData;
 
 LinearGradient appGradient(ThemeData theme) => LinearGradient(
       colors: [

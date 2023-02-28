@@ -8,3 +8,13 @@ class LoginInitialState extends LoginState {
 
   LoginInitialState({required this.user, required this.password});
 }
+
+class LoginAuthenticatedState extends LoginState {
+  final UserModel user;
+
+  LoginAuthenticatedState(this.user);
+}
+
+class LoginAuthenticateFailure extends LoginState {}
+
+class LoginLoadingState extends LoginState {}

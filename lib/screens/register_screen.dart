@@ -20,9 +20,7 @@ class RegisterScreen extends StatelessWidget {
                 height: 70,
                 decoration: const BoxDecoration(
                     image: DecorationImage(
-                        image: AssetImage('assets/images/logo-2.png'),
-                        scale: 0.5,
-                        fit: BoxFit.fitHeight)),
+                        image: AssetImage('assets/images/logo-2.png'), scale: 0.5, fit: BoxFit.fitHeight)),
               )),
           Padding(
             padding: const EdgeInsets.fromLTRB(30.0, 0, 30, 0),
@@ -35,46 +33,31 @@ class RegisterScreen extends StatelessWidget {
                       color: Colors.white,
                       borderRadius: BorderRadius.circular(10),
                       boxShadow: const [
-                        BoxShadow(
-                            color: Color.fromRGBO(143, 148, 251, .2),
-                            blurRadius: 20.0,
-                            offset: Offset(0, 10))
+                        BoxShadow(color: Color.fromRGBO(143, 148, 251, .2), blurRadius: 20.0, offset: Offset(0, 10))
                       ]),
                   child: Column(children: <Widget>[
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          border:
-                              Border(bottom: BorderSide(color: Colors.grey))),
+                      decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
                       child: const TextField(
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "name",
-                            hintStyle: TextStyle(color: Colors.grey)),
+                            border: InputBorder.none, hintText: "name", hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          border:
-                              Border(bottom: BorderSide(color: Colors.grey))),
+                      decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
                       child: const TextField(
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "e-mail",
-                            hintStyle: TextStyle(color: Colors.grey)),
+                            border: InputBorder.none, hintText: "e-mail", hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
                     Container(
                       padding: const EdgeInsets.all(8.0),
-                      decoration: const BoxDecoration(
-                          border:
-                              Border(bottom: BorderSide(color: Colors.grey))),
+                      decoration: const BoxDecoration(border: Border(bottom: BorderSide(color: Colors.grey))),
                       child: const TextField(
                         decoration: InputDecoration(
-                            border: InputBorder.none,
-                            hintText: "password",
-                            hintStyle: TextStyle(color: Colors.grey)),
+                            border: InputBorder.none, hintText: "password", hintStyle: TextStyle(color: Colors.grey)),
                       ),
                     ),
                     Container(
@@ -96,10 +79,8 @@ class RegisterScreen extends StatelessWidget {
                       height: 50,
                       decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(10),
-                          gradient: const LinearGradient(colors: [
-                            Color.fromRGBO(143, 148, 251, 1),
-                            Color.fromRGBO(143, 148, 251, .6)
-                          ])),
+                          gradient: const LinearGradient(
+                              colors: [Color.fromRGBO(143, 148, 251, 1), Color.fromRGBO(143, 148, 251, .6)])),
                       child: AppButton(
                         text: 'Register',
                         onPressed: () {}, //=>

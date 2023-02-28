@@ -15,10 +15,14 @@ class SummaryHeader extends StatelessWidget {
       child: Container(
         height: 55,
         padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
-        decoration: BoxDecoration(
-          color: Colors.white,
-          borderRadius: BorderRadius.circular(6.0),
-        ),
+        decoration: BoxDecoration(color: Colors.white, borderRadius: BorderRadius.circular(6.0), boxShadow: [
+          BoxShadow(
+            offset: Offset(0, 4),
+            blurRadius: 4,
+            spreadRadius: 1,
+            color: Colors.grey.withOpacity(.4),
+          )
+        ]),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [

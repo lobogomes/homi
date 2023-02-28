@@ -1,0 +1,50 @@
+syntax = "proto3";
+
+service IoTService {
+  rpc GetAccessToken (Credentials) returns (Token) {}
+
+  rpc SayTemperature (TemperatureRequest) returns (TemperatureReply) {}
+  rpc BlinkLed (LedRequest) returns (LedReply) {}
+  rpc SayLuminosity (LuminosityRequest) returns (LuminosityReply) {}
+}
+
+message Credentials {
+  string login = 1;
+  string password = 2;
+}
+
+message Token {
+  string status = 1;
+  string token = 2;
+}
+
+message TemperatureRequest {
+  string sensorName = 1;
+  string accessToken = 2;
+}
+
+message TemperatureReply {
+  string status = 1;
+  string temperature = 2;
+}
+
+message LedRequest {
+  uint32 state = 1;
+  string sensorName = 2;
+  string accessToken = 3;
+}
+
+message LedReply {
+  string status = 1;
+  map<string, uint32> ledstate = 2;
+}
+
+message LuminosityRequest {
+  string sensorName = 1;
+  string accessToken = 2;
+}
+
+message LuminosityReply {
+  string status = 1;
+  string luminosity = 2;
+}
