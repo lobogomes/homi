@@ -19,9 +19,18 @@ class RepositoryRegistry extends Registry {
 }
 
 Future<void> initRegister() async {
-  RepositoryRegistry.instance.register<IoTServiceClient>(Record(builder: () => GRPCClient.instance.stub));
+  RepositoryRegistry.instance.register<IoTServiceClient>(
+      Record(builder: () => GRPCClient.instance.stub));
 
-  RepositoryRegistry.instance.register<Dio>(Record(builder: () => Dio()));
+  RepositoryRegistry.instance.register<Dio>(
+    Record(
+      builder: () => Dio(
+        BaseOptions(
+          baseUrl: 'http://192.168.6.218:8080/',
+        ),
+      ),
+    ),
+  );
   RepositoryRegistry.instance.register<HTTPClient>(Record(
     builder: () => DioClient(RepositoryRegistry.instance.resolve<Dio>()),
   ));
@@ -34,7 +43,8 @@ Future<void> initRegister() async {
     )
     ..register<ILoginDatasource>(
       Record(
-        builder: () => LoginDatasource(RepositoryRegistry.instance.resolveOrNull<IoTServiceClient>(),
+        builder: () => LoginDatasource(
+            RepositoryRegistry.instance.resolveOrNull<IoTServiceClient>(),
             RepositoryRegistry.instance.resolveOrNull<HTTPClient>()),
       ),
     )
@@ -44,7 +54,8 @@ Future<void> initRegister() async {
           LoginRepository(
             RepositoryRegistry.instance.resolve<ILoginDatasource>(),
           ),
-          database: RepositoryRegistry.instance.resolve<IKeyValueStorageDatabase>(),
+          database:
+              RepositoryRegistry.instance.resolve<IKeyValueStorageDatabase>(),
         ),
       ),
     );

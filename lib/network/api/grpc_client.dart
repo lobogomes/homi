@@ -8,7 +8,7 @@ class GRPCClient {
 
   IoTServiceClient get stub {
     final ClientChannel channel = ClientChannel(
-      '35.247.238.84',
+      '34.170.205.17',
       port: 50051,
       options: ChannelOptions(
         credentials: ChannelCredentials.insecure(),

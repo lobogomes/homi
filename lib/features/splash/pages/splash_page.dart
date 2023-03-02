@@ -11,7 +11,8 @@ class SplashPage extends StatefulWidget {
 }
 
 class _SplashPageState extends State<SplashPage> {
-  final SplashController splashController = RepositoryRegistry.instance.resolve<SplashController>();
+  final SplashController splashController =
+      RepositoryRegistry.instance.resolve<SplashController>();
 
   @override
   void initState() {
@@ -41,9 +42,15 @@ class _SplashPageState extends State<SplashPage> {
     return Scaffold(
       body: Center(
         child: Container(
+          height: 80,
+          width: 80,
           decoration: BoxDecoration(
             color: Colors.grey,
             borderRadius: BorderRadius.circular(12),
+          ),
+          padding: EdgeInsets.all(6),
+          child: CircularProgressIndicator(
+            color: Colors.white,
           ),
         ),
       ),

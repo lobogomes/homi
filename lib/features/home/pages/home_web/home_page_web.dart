@@ -7,9 +7,12 @@ import 'package:homi/widgets/home_section_button_widget.dart';
 
 class HomePageWeb extends StatefulWidget {
   final String userName;
+  final String accessToken;
+
   HomePageWeb({
     Key? key,
     required this.userName,
+    required this.accessToken,
   }) : super(key: key);
 
   @override
@@ -17,7 +20,8 @@ class HomePageWeb extends StatefulWidget {
 }
 
 class _HomePageWebState extends State<HomePageWeb> {
-  final HomeController homeController = RepositoryRegistry.instance.resolve<HomeController>();
+  final HomeController homeController =
+      RepositoryRegistry.instance.resolve<HomeController>();
 
   bool isDisposable = false;
 

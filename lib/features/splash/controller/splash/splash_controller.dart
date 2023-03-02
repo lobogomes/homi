@@ -15,6 +15,8 @@ class SplashController extends ValueNotifier<SplashState> {
 
       final hasUser = database.containsKey(key: 'user');
 
+      await Future.delayed(Duration(seconds: 2));
+
       if (hasUser) {
         final user = UserModel.fromJson(await database.read(key: 'user'));
         value = SplashInitializedWithUserState(user);

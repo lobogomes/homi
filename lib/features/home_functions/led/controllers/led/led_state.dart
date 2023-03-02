@@ -4,4 +4,6 @@ abstract class LedState {}
 
 class LedInitialState extends LedState {}
 
-class LedSuccessState extends LedState {}
+class LedOnState extends LedState {}
+
+class LedOffState extends LedState {}

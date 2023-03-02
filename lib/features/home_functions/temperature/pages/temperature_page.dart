@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:homi/features/home_functions/temperature/controllers/temperature/temperature_controller.dart';
+import 'package:homi/features/home_functions/temperature/datasource/temperature_datasource.dart';
 import 'package:homi/features/repository_registry.dart';
 import 'package:sleek_circular_slider/sleek_circular_slider.dart';
 import 'package:homi/utils/spaces_util.dart';
 import 'package:homi/widgets/buttons.dart';
 
-class TemperaturePage extends StatelessWidget {
-  final TemperatureController temperatureController = RepositoryRegistry.instance.resolve<TemperatureController>();
+class TemperaturePage extends StatefulWidget {
+  final String region;
+  final String accessToken;
 
-  TemperaturePage({Key? key}) : super(key: key);
+  TemperaturePage({Key? key, required this.region, required this.accessToken})
+      : super(key: key);
+
+  @override
+  State<TemperaturePage> createState() => _TemperaturePageState();
+}
+
+class _TemperaturePageState extends State<TemperaturePage> {
+  final TemperatureController temperatureController =
+      RepositoryRegistry.instance.resolve<TemperatureController>();
+
+  @override
+  void initState() {
+    temperatureController.getTemperature(
+        accessToken: widget.accessToken, region: widget.region);
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,7 +65,8 @@ class TemperaturePage extends StatelessWidget {
                       startAngle: 130.0,
                       angleRange: 280.0,
                       size: size.height,
-                      customWidths: CustomSliderWidths(progressBarWidth: 5, handlerSize: 10),
+                      customWidths: CustomSliderWidths(
+                          progressBarWidth: 5, handlerSize: 10),
                     ),
                     min: 0,
                     max: 40,

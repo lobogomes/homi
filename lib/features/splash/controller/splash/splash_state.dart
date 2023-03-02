@@ -9,7 +9,9 @@ class SplashInitializedWithoutUserState extends SplashState {}
 class SplashInitializedWithUserState extends SplashState {
   final UserModel user;
 
-  SplashInitializedWithUserState(this.user);
+  SplashInitializedWithUserState(
+    this.user,
+  );
 }
 
 class SplashLoadedFailure extends SplashState {}

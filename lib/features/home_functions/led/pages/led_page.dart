@@ -6,10 +6,32 @@ import 'package:homi/features/home_functions/led/controllers/led/led_controller.
 import 'package:homi/utils/assets_util.dart';
 import 'package:homi/utils/spaces_util.dart';
 
-class LedPage extends StatelessWidget {
-  final LedController ledController = RepositoryRegistry.instance.resolve<LedController>();
+class LedPage extends StatefulWidget {
+  final String region;
+  final String accessToken;
 
-  LedPage({Key? key}) : super(key: key);
+  LedPage({
+    Key? key,
+    required this.region,
+    required this.accessToken,
+  }) : super(key: key);
+
+  @override
+  State<LedPage> createState() => _LedPageState();
+}
+
+class _LedPageState extends State<LedPage> {
+  final LedController ledController =
+      RepositoryRegistry.instance.resolve<LedController>();
+
+  @override
+  void initState() {
+    ledController.blinkLed(
+      region: widget.region,
+      accessToken: widget.accessToken,
+    );
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,17 +71,21 @@ class LedPage extends StatelessWidget {
                       inactiveTrackColor: theme.disabledColor,
                       thumbColor: Colors.transparent,
                       overlayColor: Colors.transparent,
-                      thumbSelector: (textDirection, values, tapValue, thumbSize, trackSize, dx) => Thumb.start,
+                      thumbSelector: (textDirection, values, tapValue,
+                              thumbSize, trackSize, dx) =>
+                          Thumb.start,
                       thumbShape: RoundSliderThumbShape(
                         enabledThumbRadius: 1,
                         elevation: 0.0,
                       ),
                       overlayShape: RoundSliderOverlayShape(overlayRadius: 1),
                       trackHeight: size.width / 3,
-                      trackShape: CustomRoundedRectSliderTrackShape(Radius.circular(12)),
+                      trackShape: CustomRoundedRectSliderTrackShape(
+                          Radius.circular(12)),
                     ),
                     child: Slider(
-                      onChanged: (value) {}, //=> controller.sliderData.value = value,
+                      onChanged:
+                          (value) {}, //=> controller.sliderData.value = value,
                       min: 0,
                       max: 100,
                       value: 0, //controller.sliderData.value,
@@ -69,11 +95,9 @@ class LedPage extends StatelessWidget {
               ),
               AppSpaces.vertical20,
               FlutterSwitch(
-                value: true, //controller.switchData.value,
-                onToggle: (value) => {
-                  // controller.switchData.value = value,
-                  // controller.changeSlider()
-                },
+                value: state is LedOnState,
+                onToggle: (value) async => await ledController.blinkLed(
+                    region: widget.region, accessToken: widget.accessToken),
                 inactiveColor: theme.disabledColor,
                 activeColor: theme.disabledColor,
                 padding: 0.0,
@@ -95,7 +119,8 @@ class LedPage extends StatelessWidget {
   }
 }
 
-class CustomRoundedRectSliderTrackShape extends SliderTrackShape with BaseSliderTrackShape {
+class CustomRoundedRectSliderTrackShape extends SliderTrackShape
+    with BaseSliderTrackShape {
   final Radius trackRadius;
   const CustomRoundedRectSliderTrackShape(this.trackRadius);
 
@@ -121,12 +146,16 @@ class CustomRoundedRectSliderTrackShape extends SliderTrackShape with BaseSlider
       return;
     }
 
-    final ColorTween activeTrackColorTween =
-        ColorTween(begin: sliderTheme.disabledActiveTrackColor, end: sliderTheme.activeTrackColor);
-    final ColorTween inactiveTrackColorTween =
-        ColorTween(begin: sliderTheme.disabledInactiveTrackColor, end: sliderTheme.inactiveTrackColor);
-    final Paint leftTrackPaint = Paint()..color = activeTrackColorTween.evaluate(enableAnimation)!;
-    final Paint rightTrackPaint = Paint()..color = inactiveTrackColorTween.evaluate(enableAnimation)!;
+    final ColorTween activeTrackColorTween = ColorTween(
+        begin: sliderTheme.disabledActiveTrackColor,
+        end: sliderTheme.activeTrackColor);
+    final ColorTween inactiveTrackColorTween = ColorTween(
+        begin: sliderTheme.disabledInactiveTrackColor,
+        end: sliderTheme.inactiveTrackColor);
+    final Paint leftTrackPaint = Paint()
+      ..color = activeTrackColorTween.evaluate(enableAnimation)!;
+    final Paint rightTrackPaint = Paint()
+      ..color = inactiveTrackColorTween.evaluate(enableAnimation)!;
 
     final Rect trackRect = getPreferredRect(
       parentBox: parentBox,
@@ -152,7 +181,9 @@ class CustomRoundedRectSliderTrackShape extends SliderTrackShape with BaseSlider
       topRight: trackRadius,
       bottomRight: trackRadius,
     );
-    var percent = ((activeRect.width / (activeRect.width + inActiveRect.width)) * 100).toInt();
+    var percent =
+        ((activeRect.width / (activeRect.width + inActiveRect.width)) * 100)
+            .toInt();
     if (percent > 99) {
       activeRect = RRect.fromLTRBAndCorners(
         trackRect.left,
@@ -188,12 +219,17 @@ class CustomRoundedRectSliderTrackShape extends SliderTrackShape with BaseSlider
       rightTrackPaint,
     );
 
-    drawText(context.canvas, '%$percent', activeRect.center.dx, activeRect.center.dy, pi * 0.5, activeRect.width);
+    drawText(context.canvas, '%$percent', activeRect.center.dx,
+        activeRect.center.dy, pi * 0.5, activeRect.width);
   }
 
-  void drawText(Canvas context, String name, double x, double y, double angleRotationInRadians, double height) {
+  void drawText(Canvas context, String name, double x, double y,
+      double angleRotationInRadians, double height) {
     context.save();
-    var span = TextSpan(style: TextStyle(color: Colors.white, fontSize: height >= 24.0 ? 24.0 : height), text: name);
+    var span = TextSpan(
+        style: TextStyle(
+            color: Colors.white, fontSize: height >= 24.0 ? 24.0 : height),
+        text: name);
     var tp = TextPainter(
       text: span,
       textAlign: TextAlign.center,

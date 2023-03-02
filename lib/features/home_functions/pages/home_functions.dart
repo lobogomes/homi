@@ -6,7 +6,14 @@ import 'package:homi/widgets/devices_data.dart';
 import 'package:iconsax/iconsax.dart';
 
 class HomeFunctionsPage extends StatefulWidget {
-  const HomeFunctionsPage({Key? key}) : super(key: key);
+  final String region;
+  final String accessToken;
+
+  const HomeFunctionsPage({
+    Key? key,
+    required this.region,
+    required this.accessToken,
+  }) : super(key: key);
 
   @override
   State<HomeFunctionsPage> createState() => _HomeFunctionsPageState();
@@ -39,13 +46,21 @@ class _HomeFunctionsPageState extends State<HomeFunctionsPage> {
           controller: _pageController,
           physics: const NeverScrollableScrollPhysics(),
           children: [
-            TemperaturePage(),
-            LedPage(),
+            TemperaturePage(
+              accessToken: widget.accessToken,
+              region: widget.region,
+            ),
+            LedPage(
+              accessToken: widget.accessToken,
+              region: widget.region,
+            ),
           ],
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
-        currentIndex: _pageController.positions.isNotEmpty ? _pageController.page?.toInt() ?? 0 : 0,
+        currentIndex: _pageController.positions.isNotEmpty
+            ? _pageController.page?.toInt() ?? 0
+            : 0,
         onTap: (index) => _pageController.animateToPage(
           index,
           duration: const Duration(milliseconds: 300),

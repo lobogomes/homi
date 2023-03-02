@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:homi/core/route/routes.dart';
 import 'package:homi/features/home/controllers/home/home_controller.dart';
 import 'package:homi/features/home/widgets/home_app_bar_widget.dart';
 import 'package:homi/features/repository_registry.dart';
@@ -6,12 +7,15 @@ import 'package:homi/utils/assets_util.dart';
 import 'package:homi/widgets/home_section_button_widget.dart';
 
 class HomePageMobile extends StatelessWidget {
-  final HomeController homeController = RepositoryRegistry.instance.resolve<HomeController>();
+  final HomeController homeController =
+      RepositoryRegistry.instance.resolve<HomeController>();
   final String userName;
+  final String accessToken;
 
   HomePageMobile({
     Key? key,
     required this.userName,
+    required this.accessToken,
   }) : super(key: key);
 
   @override
@@ -36,6 +40,7 @@ class HomePageMobile extends StatelessWidget {
                         spacing: 20,
                         alignment: WrapAlignment.start,
                         children: _loadHomeSections(
+                          context: context,
                           height: size.height * .2,
                           width: size.width * .43,
                         ),
@@ -53,6 +58,7 @@ class HomePageMobile extends StatelessWidget {
   }
 
   List<Widget> _loadHomeSections({
+    required BuildContext context,
     required double height,
     required double width,
   }) {
@@ -63,7 +69,13 @@ class HomePageMobile extends StatelessWidget {
         height: height,
         image: AppAssets.livingroom,
         text: 'Living Room',
-        onTap: () {},
+        onTap: () => Navigator.of(context).pushNamed(
+          functions,
+          arguments: {
+            'regionName': 'led-red',
+            'accessToken': accessToken,
+          },
+        ),
       ),
     );
   }

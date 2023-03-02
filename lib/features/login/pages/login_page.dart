@@ -14,7 +14,8 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
-  final LoginController loginController = RepositoryRegistry.instance.resolve<LoginController>();
+  final LoginController loginController =
+      RepositoryRegistry.instance.resolve<LoginController>();
 
   @override
   void initState() {
@@ -23,7 +24,10 @@ class _LoginPageState extends State<LoginPage> {
       if (state is LoginAuthenticatedState) {
         Navigator.of(context).pushReplacementNamed(
           home,
-          arguments: {'userName': state.user.nome},
+          arguments: {
+            'userName': state.user.nome,
+            'accessToken': state.user.token,
+          },
         );
       }
     });
@@ -118,11 +122,14 @@ class _LoginPageState extends State<LoginPage> {
                             height: 50,
                             decoration: BoxDecoration(
                                 borderRadius: BorderRadius.circular(10),
-                                gradient: const LinearGradient(
-                                    colors: [Color.fromRGBO(143, 148, 251, 1), Color.fromRGBO(143, 148, 251, .6)])),
+                                gradient: const LinearGradient(colors: [
+                                  Color.fromRGBO(143, 148, 251, 1),
+                                  Color.fromRGBO(143, 148, 251, .6)
+                                ])),
                             child: AppButton(
                               text: 'Login',
-                              onPressed: () async => await loginController.login(),
+                              onPressed: () async =>
+                                  await loginController.login(),
                             ),
                           ),
                         );

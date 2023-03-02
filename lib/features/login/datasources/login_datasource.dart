@@ -35,7 +35,7 @@ class LoginDatasource implements ILoginDatasource {
         throw Exception();
       } else {
         final body = {'login': username, 'password': password};
-        final response = await httpClient!.post('http://192.168.1.3:8080/auth', data: body);
+        final response = await httpClient!.get('auth', data: body);
 
         if ((response as Response).statusCode == 200) {
           final token = response.data['token'];
